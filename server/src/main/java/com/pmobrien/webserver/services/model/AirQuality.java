@@ -1,7 +1,9 @@
 package com.pmobrien.webserver.services.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.pmobrien.webserver.aqicn.model.AirQualityResponse;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class AirQuality {
 
   private Integer idx;

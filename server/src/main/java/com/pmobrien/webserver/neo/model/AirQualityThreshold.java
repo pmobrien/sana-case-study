@@ -1,7 +1,9 @@
 package com.pmobrien.webserver.neo.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.neo4j.ogm.annotation.Relationship;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class AirQualityThreshold extends NeoEntity {
 
   private String city;
