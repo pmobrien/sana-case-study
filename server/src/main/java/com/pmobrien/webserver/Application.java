@@ -1,11 +1,11 @@
-package com.pmobrien.rest;
+package com.pmobrien.webserver;
 
 import com.google.common.base.Strings;
-import com.pmobrien.rest.exceptions.UncaughtExceptionMapper;
-import com.pmobrien.rest.mappers.DefaultObjectMapper;
-import com.pmobrien.rest.neo.Sessions;
-import com.pmobrien.rest.neo.pojo.HelloWorld;
-import com.pmobrien.rest.services.impl.HelloWorldService;
+import com.pmobrien.webserver.exceptions.UncaughtExceptionMapper;
+import com.pmobrien.webserver.mappers.DefaultObjectMapper;
+import com.pmobrien.webserver.neo.Sessions;
+import com.pmobrien.webserver.neo.pojo.HelloWorld;
+import com.pmobrien.webserver.services.impl.HelloWorldService;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -27,7 +27,7 @@ import org.glassfish.jersey.servlet.ServletContainer;
 
 public class Application {
   
-  private static final String WEBAPP_RESOURCE_PATH = "/com/pmobrien/rest/webapp";
+  private static final String WEBAPP_RESOURCE_PATH = "/com/pmobrien/webserver/webapp";
   private static final String INDEX_HTML_PATH = String.format("%s/index.html", WEBAPP_RESOURCE_PATH);
   
   private static final ApplicationProperties PROPERTIES = ApplicationProperties.load();

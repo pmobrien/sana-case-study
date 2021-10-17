@@ -1,7 +1,7 @@
-package com.pmobrien.rest.neo.accessors;
+package com.pmobrien.webserver.neo.accessors;
 
-import com.pmobrien.rest.neo.Sessions;
-import com.pmobrien.rest.neo.pojo.HelloWorld;
+import com.pmobrien.webserver.neo.Sessions;
+import com.pmobrien.webserver.neo.pojo.HelloWorld;
 
 public class HelloWorldAccessor {
 

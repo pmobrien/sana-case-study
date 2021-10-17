@@ -1,7 +1,7 @@
-package com.pmobrien.rest.services.impl;
+package com.pmobrien.webserver.services.impl;
 
-import com.pmobrien.rest.neo.accessors.HelloWorldAccessor;
-import com.pmobrien.rest.services.IHelloWorldService;
+import com.pmobrien.webserver.neo.accessors.HelloWorldAccessor;
+import com.pmobrien.webserver.services.IHelloWorldService;
 import javax.ws.rs.core.Response;
 
 public class HelloWorldService implements IHelloWorldService {

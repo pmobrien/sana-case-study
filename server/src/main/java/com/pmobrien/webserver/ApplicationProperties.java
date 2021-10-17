@@ -1,4 +1,4 @@
-package com.pmobrien.rest;
+package com.pmobrien.webserver;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,7 +12,7 @@ import java.io.IOException;
 public class ApplicationProperties {
   
   private static final String SYSTEM_PROPERTY = "properties";
-  private static final String DEFAULT_PATH = "com/pmobrien/rest/conf/properties.json";
+  private static final String DEFAULT_PATH = "com/pmobrien/webserver/conf/properties.json";
 
   private Configuration configuration;
   

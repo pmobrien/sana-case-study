@@ -1,4 +1,4 @@
-package com.pmobrien.rest.exceptions;
+package com.pmobrien.webserver.exceptions;
 
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;

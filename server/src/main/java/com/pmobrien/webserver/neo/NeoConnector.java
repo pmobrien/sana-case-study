@@ -1,8 +1,8 @@
-package com.pmobrien.rest.neo;
+package com.pmobrien.webserver.neo;
 
 import com.google.common.base.Strings;
 import com.google.common.base.Suppliers;
-import com.pmobrien.rest.Application;
+import com.pmobrien.webserver.Application;
 import java.io.File;
 import java.util.function.Supplier;
 
@@ -16,7 +16,7 @@ import org.neo4j.ogm.session.SessionFactory;
 
 public class NeoConnector {
 
-  private static final String POJO_PACKAGE = "com.pmobrien.rest.neo.pojo";
+  private static final String POJO_PACKAGE = "com.pmobrien.webserver.neo.pojo";
   
   private static final NeoConnector INSTANCE = new NeoConnector();
   private static final Supplier<SessionFactory> SESSION_FACTORY = Suppliers.memoize(NeoConnector::initializeSessionFactory);

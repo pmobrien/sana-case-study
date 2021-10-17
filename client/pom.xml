@@ -72,7 +72,7 @@
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <outputDirectory>../server/src/main/resources/com/pmobrien/rest/webapp</outputDirectory>
+              <outputDirectory>../server/src/main/resources/com/pmobrien/webserver/webapp</outputDirectory>
               <resources>
                 <resource>
                   <directory>build/</directory>

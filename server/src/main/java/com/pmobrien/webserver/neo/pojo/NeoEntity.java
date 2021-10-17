@@ -1,4 +1,4 @@
-package com.pmobrien.rest.neo.pojo;
+package com.pmobrien.webserver.neo.pojo;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;

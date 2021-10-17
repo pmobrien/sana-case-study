@@ -1,10 +1,10 @@
-package com.pmobrien.rest.mappers;
+package com.pmobrien.webserver.mappers;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.pmobrien.rest.neo.pojo.HelloWorld;
+import com.pmobrien.webserver.neo.pojo.HelloWorld;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.ext.ContextResolver;
