@@ -6,19 +6,21 @@ import org.neo4j.ogm.annotation.Relationship;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AirQualityThreshold extends NeoEntity {
 
-  private String city;
   private Integer threshold;
+
+  @Relationship(type = "FOR_CITY", direction = Relationship.OUTGOING)
+  private City city;
 
   @Relationship(type = "HAS_THRESHOLD", direction = Relationship.INCOMING)
   private User user;
 
   public AirQualityThreshold() {}
 
-  public String getCity() {
+  public City getCity() {
     return city;
   }
 
-  public void setCity(String city) {
+  public void setCity(City city) {
     this.city = city;
   }
 
