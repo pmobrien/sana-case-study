@@ -4,7 +4,7 @@ import com.google.common.base.Strings;
 import com.pmobrien.webserver.exceptions.UncaughtExceptionMapper;
 import com.pmobrien.webserver.mappers.DefaultObjectMapper;
 import com.pmobrien.webserver.neo.Sessions;
-import com.pmobrien.webserver.neo.pojo.HelloWorld;
+import com.pmobrien.webserver.neo.model.HelloWorld;
 import com.pmobrien.webserver.services.impl.HelloWorldService;
 import java.net.MalformedURLException;
 import java.net.URI;

@@ -16,7 +16,7 @@ import org.neo4j.ogm.session.SessionFactory;
 
 public class NeoConnector {
 
-  private static final String POJO_PACKAGE = "com.pmobrien.webserver.neo.pojo";
+  private static final String POJO_PACKAGE = "com.pmobrien.webserver.neo.model";
   
   private static final NeoConnector INSTANCE = new NeoConnector();
   private static final Supplier<SessionFactory> SESSION_FACTORY = Suppliers.memoize(NeoConnector::initializeSessionFactory);

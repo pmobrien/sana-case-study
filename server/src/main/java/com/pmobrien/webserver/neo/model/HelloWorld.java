@@ -1,4 +1,4 @@
-package com.pmobrien.webserver.neo.pojo;
+package com.pmobrien.webserver.neo.model;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;

@@ -1,4 +1,4 @@
-package com.pmobrien.webserver.neo.pojo;
+package com.pmobrien.webserver.neo.model;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -7,18 +7,28 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.typeconversion.Convert;
+import org.neo4j.ogm.id.UuidStrategy;
+import org.neo4j.ogm.typeconversion.UuidStringConverter;
+
+import java.util.UUID;
 
 @NodeEntity
 public class NeoEntity {
 
   @Id
-  @GeneratedValue
-  private Long id;
+  @Convert(UuidStringConverter.class)
+  @GeneratedValue(strategy = UuidStrategy.class)
+  private UUID uuid;
 
-  public Long getId() {
-    return id;
+  public UUID getUuid() {
+    return uuid;
   }
-  
+
+  public void setUuid(UUID uuid) {
+    this.uuid = uuid;
+  }
+
   public String toJson() {
     try {
       return new ObjectMapper()
