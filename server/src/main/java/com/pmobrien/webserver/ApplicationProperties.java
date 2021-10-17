@@ -31,6 +31,7 @@ public class ApplicationProperties {
     private Http http;
     private Https https;
     private Neo neo;
+    private Aqicn aqicn;
     
     public Configuration() {}
 
@@ -57,7 +58,15 @@ public class ApplicationProperties {
     public void setNeo(Neo neo) {
       this.neo = neo;
     }
-    
+
+    public Aqicn getAqicn() {
+      return aqicn;
+    }
+
+    public void setAqicn(Aqicn aqicn) {
+      this.aqicn = aqicn;
+    }
+
     public static class Http {
       
       private Integer port;
@@ -143,6 +152,21 @@ public class ApplicationProperties {
 
       public void setBoltUri(String boltUri) {
         this.boltUri = boltUri;
+      }
+    }
+
+    public static class Aqicn {
+
+      private String token;
+
+      public Aqicn() {}
+
+      public String getToken() {
+        return token;
+      }
+
+      public void setToken() {
+        this.token = token;
       }
     }
   }

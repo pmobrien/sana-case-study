@@ -1,3 +1,6 @@
+# properties file
+properties.json
+
 # server
 server/neo-store/
 server/logs/
