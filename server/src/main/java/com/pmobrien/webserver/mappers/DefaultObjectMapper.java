@@ -4,7 +4,11 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.pmobrien.webserver.neo.model.AirQualityThreshold;
+import com.pmobrien.webserver.neo.model.City;
 import com.pmobrien.webserver.neo.model.HelloWorld;
+import com.pmobrien.webserver.neo.model.User;
+
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.ext.ContextResolver;
@@ -21,7 +25,10 @@ public class DefaultObjectMapper implements ContextResolver<ObjectMapper> {
         .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
         .registerModule(
             new SimpleModule()
+                .addSerializer(AirQualityThreshold.class, new AirQualityThreshold.Serializer())
+                .addSerializer(City.class, new City.Serializer())
                 .addSerializer(HelloWorld.class, new HelloWorld.Serializer())
+                .addSerializer(User.class, new User.Serializer())
         );
   }
 }

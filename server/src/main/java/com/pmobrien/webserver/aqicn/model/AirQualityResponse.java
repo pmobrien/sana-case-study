@@ -1,5 +1,6 @@
 package com.pmobrien.webserver.aqicn.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -24,5 +25,15 @@ public class AirQualityResponse {
 
   public void setData(Data data) {
     this.data = data;
+  }
+
+  @JsonIgnore
+  public boolean isSuccess() {
+    return Status.OK.equals(status);
+  }
+
+  @JsonIgnore
+  public boolean isError() {
+    return Status.ERROR.equals(status);
   }
 }
