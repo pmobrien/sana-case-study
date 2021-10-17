@@ -35,14 +35,12 @@ public class Application {
   public static void main(String[] args) throws Exception {
     try {
       new Application().run(new Server());
-    } catch(Exception ex) {
+    } catch(Throwable ex) {
       ex.printStackTrace(System.out);
-    } catch(Throwable t) {
-      t.printStackTrace(System.out);
     }
   }
   
-  private Application() throws Exception {
+  private Application() {
     Sessions.sessionOperation(session -> session.save(new HelloWorld()));
   }
   
