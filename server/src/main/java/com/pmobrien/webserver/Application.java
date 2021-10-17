@@ -9,6 +9,8 @@ import com.pmobrien.webserver.services.impl.HelloWorldService;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
+
+import com.pmobrien.webserver.services.impl.LocationsService;
 import org.eclipse.jetty.server.ForwardedRequestCustomizer;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.HttpConfiguration;
@@ -82,6 +84,7 @@ public class Application {
         new ServletHolder(
             new ServletContainer(
                 new ResourceConfig()
+                    .register(LocationsService.class)
                     .register(HelloWorldService.class)
                     .register(DefaultObjectMapper.class)
                     .register(UncaughtExceptionMapper.class)

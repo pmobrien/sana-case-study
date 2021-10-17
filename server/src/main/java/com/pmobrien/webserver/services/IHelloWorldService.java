@@ -11,5 +11,5 @@ public interface IHelloWorldService {
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
-  public Response helloWorld();
+  Response helloWorld();
 }
