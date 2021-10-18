@@ -11,34 +11,38 @@ import java.util.HashMap;
 public class CitiesAccessor {
 
   public City getCity(String cityName) {
-    // kind of a hack, but the city search api response doesn't have the city name key in it
-    AirQualityResponse aq = new AirQualityClient().getCityFeed(cityName);
-    if (aq.isError()) {
-      throw new NotFoundException(String.format("City (%s) not found.", cityName));
-    }
-
-    return Sessions.returningSessionOperation(session -> {
-      City city = session.queryForObject(
+    City city = Sessions.returningSessionOperation(session ->
+      session.queryForObject(
           City.class,
           Queries.GET_CITY_BY_NAME,
           new HashMap<String, String>() {{
             put("cityName", cityName);
           }}
-      );
+      )
+    );
 
-      // if we don't have the city in the graph yet, save it
-      if (city == null) {
-        city = new City.Builder()
+    if (city == null) {
+      // kind of a hack, but the city search api response doesn't have the city name key in it
+      AirQualityResponse aq = new AirQualityClient().getCityFeed(cityName);
+      if (aq.isError()) {
+        throw new NotFoundException(String.format("City (%s) not found.", cityName));
+      }
+
+      // create the city in the graph
+      return Sessions.returningSessionOperation(session -> {
+        City newCity = new City.Builder()
             .idx(aq.getData().getIdx())
             .name(cityName)
             .description(aq.getData().getCity().getName())
             .build();
 
-        session.save(city);
-      }
+        session.save(newCity);
 
+        return newCity;
+      });
+    } else {
       return city;
-    });
+    }
   }
 
   private static class Queries {
