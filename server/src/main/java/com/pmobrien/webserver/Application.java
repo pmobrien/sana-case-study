@@ -11,6 +11,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import com.pmobrien.webserver.services.impl.LocationsService;
+import com.pmobrien.webserver.services.impl.TokenService;
 import com.pmobrien.webserver.services.impl.UsersService;
 import org.eclipse.jetty.server.ForwardedRequestCustomizer;
 import org.eclipse.jetty.server.Handler;
@@ -85,6 +86,7 @@ public class Application {
         new ServletHolder(
             new ServletContainer(
                 new ResourceConfig()
+                    .register(TokenService.class)
                     .register(UsersService.class)
                     .register(LocationsService.class)
                     .register(HelloWorldService.class)
