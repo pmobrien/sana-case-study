@@ -1,10 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 
 import './ThresholdCard.css'
 
+async function checkLocationAirQuality(locationId) {
+  return fetch(`http://localhost:15000/api/locations/${locationId}/air-quality`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(data => data.json());
+}
+
 export default function ThresholdCard({threshold}) {
+
+  const [message, setMessage] = useState();
+  const [messageColor, setMessageColor] = useState();
+
+  const onCheckClick = async (e, data) => {
+    const city = await checkLocationAirQuality(data.city.name);
+
+    setMessage(`AQI for ${threshold.city.name} is currently ${city.aqi}`);
+    setMessageColor(city.aqi >= threshold.threshold ? 'text-danger' : 'text-success');
+  };
+
   return (
     <Card className="threshold-card" style={{ width: '50rem' }} key={threshold.uuid}>
       <Container>
@@ -17,10 +38,15 @@ export default function ThresholdCard({threshold}) {
               <Button className="threshold-card-button" variant="outline-primary">{threshold.threshold}</Button>
             </Col>
             <Col xs={1}>
-              <Button className="threshold-card-button" variant="outline-dark">Check</Button>
+              <Button className="threshold-card-button" variant="outline-dark" onClick={((e) => onCheckClick(e, threshold))}>Check</Button>
             </Col>
-            <Col>
-              <Button className="threshold-card-button float-end" variant="danger">X</Button>
+            <Col xs={1}>
+            </Col>
+            <Col xs={6}>
+              <p className={messageColor}>{message}</p>
+            </Col>
+            <Col xs={1}>
+              <Button className="threshold-card-button" variant="danger">X</Button>
             </Col>
           </Row>
         </Card.Body>

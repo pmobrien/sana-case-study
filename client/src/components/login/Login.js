@@ -31,7 +31,7 @@ export default function Login({setToken, setUsername}) {
     });
     setToken(token.token);
     setUsername(loginUsername);
-  }
+  };
 
   return(
     <div className="center">
@@ -39,7 +39,7 @@ export default function Login({setToken, setUsername}) {
       <form className="horizontal-center" onSubmit={handleSubmit}>
         <input autoFocus className="login-username horizontal-center" type="text" placeholder="username" onChange={(e) => setLoginUsername(e.target.value)} />
         <p>(no password required - if username doesn't exist, a new user will be created)</p>
-        <Button className="login-button" variant="dark" type="submit" onSubmit="handleSubmit">Login</Button>
+        <Button className="login-button" variant="dark" type="submit" onSubmit={handleSubmit}>Login</Button>
       </form>
     </div>
   )
