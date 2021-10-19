@@ -12,7 +12,7 @@ async function login(credentials) {
     },
     body: JSON.stringify(credentials)
   })
-  .then(data => data.json())
+  .then(data => data.json());
 }
 
 export default function Login({setToken, setUsername}) {
@@ -30,9 +30,9 @@ export default function Login({setToken, setUsername}) {
 
   return(
     <div className="center">
-      <h1 className="horizontal-center">Log In</h1>
+      <h1 className="horizontal-center">Sana Case Study - Log In</h1>
       <form className="horizontal-center" onSubmit={handleSubmit}>
-        <input className="login-username horizontal-center" type="text" placeholder="username" onChange={(e) => setLoginUsername(e.target.value)} />
+        <input autoFocus className="login-username horizontal-center" type="text" placeholder="username" onChange={(e) => setLoginUsername(e.target.value)} />
         <p>(no password required - if username doesn't exist, a new user will be created)</p>
         <div className="horizontal-center">
           <Button variant="dark" type="submit">Login</Button>
