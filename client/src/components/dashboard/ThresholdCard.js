@@ -14,7 +14,16 @@ async function checkLocationAirQuality(locationId) {
   .then(data => data.json());
 }
 
-export default function ThresholdCard({threshold}) {
+async function deleteThreshold(username, thresholdId) {
+  return fetch(`http://localhost:15000/api/users/${username}/thresholds/${thresholdId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+}
+
+export default function ThresholdCard({username, threshold, loadThresholds}) {
 
   const [message, setMessage] = useState();
   const [messageColor, setMessageColor] = useState();
@@ -24,6 +33,11 @@ export default function ThresholdCard({threshold}) {
 
     setMessage(`AQI for ${threshold.city.name} is currently ${city.aqi}`);
     setMessageColor(city.aqi >= threshold.threshold ? 'text-danger' : 'text-success');
+  };
+
+  const onDeleteClick = async (e) => {
+    deleteThreshold(username, threshold.uuid)
+      .then(_ => loadThresholds());
   };
 
   return (
@@ -46,7 +60,7 @@ export default function ThresholdCard({threshold}) {
               <p className={messageColor}>{message}</p>
             </Col>
             <Col xs={1}>
-              <Button className="threshold-card-button" variant="danger">X</Button>
+              <Button className="threshold-card-button" variant="danger" onClick={onDeleteClick}>X</Button>
             </Col>
           </Row>
         </Card.Body>

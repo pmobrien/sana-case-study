@@ -7,6 +7,7 @@ import com.pmobrien.webserver.services.model.CreateUserRequest;
 import com.pmobrien.webserver.services.model.CreateUserThresholdRequest;
 
 import javax.ws.rs.core.Response;
+import java.util.UUID;
 
 public class UsersService implements IUsersService {
 
@@ -33,5 +34,11 @@ public class UsersService implements IUsersService {
             )
         )
         .build();
+  }
+
+  @Override
+  public Response deleteUserThreshold(String username, String thresholdId) {
+    new UsersAccessor().deleteUserThreshold(username, UUID.fromString(thresholdId));
+    return Response.noContent().build();
   }
 }

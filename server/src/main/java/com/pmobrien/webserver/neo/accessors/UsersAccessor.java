@@ -6,6 +6,7 @@ import com.pmobrien.webserver.neo.model.City;
 import com.pmobrien.webserver.neo.model.User;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 public class UsersAccessor {
 
@@ -61,6 +62,21 @@ public class UsersAccessor {
     });
   }
 
+  public void deleteUserThreshold(String username, UUID thresholdId) {
+    // don't really need user id here, but in a real application we would use it to double-check
+    // that the threshold actually belongs to this user
+
+    Sessions.sessionOperation(session ->
+        session.query(
+            Queries.DELETE_USER_THRESHOLD,
+            new HashMap<String, String>() {{
+              put("username", username);
+              put("uuid", thresholdId.toString());
+            }}
+        )
+    );
+  }
+
   private static class Queries {
 
     private static final String GET_USER_BY_USERNAME = new StringBuilder()
@@ -73,6 +89,11 @@ public class UsersAccessor {
         .append("MATCH (user:User { username: {username} })").append(System.lineSeparator())
         .append("MATCH (user)-[has_threshold:HAS_THRESHOLD]->(threshold:AirQualityThreshold)-[for_city:FOR_CITY]->(city)").append(System.lineSeparator())
         .append("RETURN threshold, for_city, city, user, has_threshold")
+        .toString();
+
+    private static final String DELETE_USER_THRESHOLD = new StringBuilder()
+        .append("MATCH (threshold:AirQualityThreshold { uuid: {uuid} })").append(System.lineSeparator())
+        .append("DETACH DELETE threshold")
         .toString();
   }
 }

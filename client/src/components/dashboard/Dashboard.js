@@ -40,7 +40,7 @@ export default function Dashboard({deleteToken, username}) {
         <AddThresholdForm username={username} loadThresholds={loadThresholds} />
 
         <div>
-          {thresholds.map(threshold => <ThresholdCard threshold={threshold} />)}
+          {thresholds.map(threshold => <ThresholdCard username={username} threshold={threshold} loadThresholds={loadThresholds} />)}
         </div>
       </div>
     </div>
