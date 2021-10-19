@@ -27,13 +27,22 @@ public class ApplicationProperties {
   }
   
   public static class Configuration {
-    
+
+    private Client client;
     private Http http;
     private Https https;
     private Neo neo;
     private Aqicn aqicn;
     
     public Configuration() {}
+
+    public Client getClient() {
+      return client;
+    }
+
+    public void setClient(Client client) {
+      this.client = client;
+    }
 
     public Http getHttp() {
       return http;
@@ -65,6 +74,36 @@ public class ApplicationProperties {
 
     public void setAqicn(Aqicn aqicn) {
       this.aqicn = aqicn;
+    }
+
+    public static class Client {
+
+      private Cors cors;
+
+      public Client() {}
+
+      public Cors getCors() {
+        return cors;
+      }
+
+      public void setCors(Cors cors) {
+        this.cors = cors;
+      }
+
+      public static class Cors {
+
+        private Boolean enabled;
+
+        public Cors() {}
+
+        public Boolean isEnabled() {
+          return enabled;
+        }
+
+        public void setEnabled(Boolean enabled) {
+          this.enabled = enabled;
+        }
+      }
     }
 
     public static class Http {

@@ -1,5 +1,10 @@
 {
   "configuration": {
+    "client": {
+      "cors": {
+        "enabled": true
+      }
+    },
     "http": {
       "port": 15000
     },

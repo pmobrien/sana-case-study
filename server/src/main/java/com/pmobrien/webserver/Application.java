@@ -9,6 +9,7 @@ import com.pmobrien.webserver.services.impl.HelloWorldService;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.EnumSet;
 
 import com.pmobrien.webserver.services.impl.LocationsService;
 import com.pmobrien.webserver.services.impl.TokenService;
@@ -22,12 +23,16 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.servlet.DefaultServlet;
+import org.eclipse.jetty.servlet.FilterHolder;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import org.eclipse.jetty.servlets.CrossOriginFilter;
 import org.eclipse.jetty.util.resource.Resource;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
+
+import javax.servlet.DispatcherType;
 
 public class Application {
   
@@ -96,6 +101,14 @@ public class Application {
         ),
         "/*"
     );
+
+    if (Application.getProperties().getConfiguration().getClient().getCors().isEnabled()) {
+      FilterHolder cors = handler.addFilter(CrossOriginFilter.class,"/*", EnumSet.of(DispatcherType.REQUEST));
+      cors.setInitParameter(CrossOriginFilter.ALLOWED_ORIGINS_PARAM, "*");
+      cors.setInitParameter(CrossOriginFilter.ACCESS_CONTROL_ALLOW_ORIGIN_HEADER, "*");
+      cors.setInitParameter(CrossOriginFilter.ALLOWED_METHODS_PARAM, "GET,POST,HEAD");
+      cors.setInitParameter(CrossOriginFilter.ALLOWED_HEADERS_PARAM, "X-Requested-With,Content-Type,Accept,Origin");
+    }
     
     return handler;
   }
