@@ -1,7 +1,17 @@
 import React from 'react';
 
-export default function Dashboard() {
+import Button from 'react-bootstrap/Button';
+
+export default function Dashboard({deleteToken}) {
+
+  const logout = async (e) => {
+    deleteToken();
+  }
+
   return(
-    <h2>Dashboard</h2>
+    <div>
+      <h2>Dashboard</h2>
+      <Button onClick={logout}>Logout</Button>
+    </div>
   );
 }

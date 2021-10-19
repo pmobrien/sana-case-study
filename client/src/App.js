@@ -9,7 +9,7 @@ import './App.css';
 
 function App() {
 
-  const { token, setToken } = UseToken();
+  const { token, setToken, deleteToken } = UseToken();
 
   if (!token) {
     return <Login setToken={setToken} />
@@ -17,11 +17,10 @@ function App() {
 
   return (
     <div className="wrapper">
-      <h1>Application</h1>
       <BrowserRouter>
         <Switch>
-          <Route path="/dashboard">
-            <Dashboard />
+          <Route>
+            <Dashboard deleteToken={deleteToken} />
           </Route>
         </Switch>
       </BrowserRouter>
