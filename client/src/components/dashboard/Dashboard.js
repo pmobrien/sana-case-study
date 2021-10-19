@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
-import { Button, Col, Form, Row } from 'react-bootstrap';
-
 import Navbar from '../navbar/Navbar.js'
 import ThresholdCard from './ThresholdCard.js';
+import AddThresholdForm from './AddThresholdForm.js';
 
 import './Dashboard.css';
 
@@ -38,21 +37,7 @@ export default function Dashboard({deleteToken, username}) {
 
       <div className="dashboard-container">
         <h2>My Air Quality Thresholds</h2>
-        <Form className="add-threshold-form">
-          <Row className="align-items-center">
-            <Col xs="auto">
-              <Form.Label htmlFor="inlineFormInput" visuallyHidden>
-                City Name
-              </Form.Label>
-              <Form.Control className="mb-2" id="inlineFormInput" placeholder="enter city name..." />
-            </Col>
-            <Col xs="auto">
-              <Button type="submit" className="mb-2">
-                Add
-              </Button>
-            </Col>
-          </Row>
-        </Form>
+        <AddThresholdForm username={username} loadThresholds={loadThresholds} />
 
         <div>
           {thresholds.map(threshold => <ThresholdCard threshold={threshold} />)}
