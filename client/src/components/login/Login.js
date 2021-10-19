@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import './Login.css';
 
 async function login(credentials) {
-  return fetch('http://localhost:15000/api/tokens', {
+  return fetch('/api/tokens', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

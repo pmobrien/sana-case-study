@@ -5,7 +5,7 @@ import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import './ThresholdCard.css'
 
 async function checkLocationAirQuality(locationId) {
-  return fetch(`http://localhost:15000/api/locations/${locationId}/air-quality`, {
+  return fetch(`/api/locations/${locationId}/air-quality`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -15,7 +15,7 @@ async function checkLocationAirQuality(locationId) {
 }
 
 async function deleteThreshold(username, thresholdId) {
-  return fetch(`http://localhost:15000/api/users/${username}/thresholds/${thresholdId}`, {
+  return fetch(`/api/users/${username}/thresholds/${thresholdId}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'

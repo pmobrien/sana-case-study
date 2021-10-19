@@ -11,7 +11,7 @@ export default function Dashboard({deleteToken, username}) {
   const [thresholds, setThresholds] = useState([]);
 
   const loadThresholds = useCallback(async () => {
-    await fetch(`http://localhost:15000/api/users/${username}/thresholds`)
+    await fetch(`/api/users/${username}/thresholds`)
       .then(res => res.json())
       .then(
         (result) => {

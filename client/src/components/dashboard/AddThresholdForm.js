@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 
 async function addThreshold(username, threshold) {
-  return fetch(`http://localhost:15000/api/users/${username}/thresholds`, {
+  return fetch(`/api/users/${username}/thresholds`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
