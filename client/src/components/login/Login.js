@@ -15,23 +15,24 @@ async function login(credentials) {
   .then(data => data.json())
 }
 
-export default function Login({setToken}) {
+export default function Login({setToken, setUsername}) {
 
-  const [username, setUsername] = useState();
+  const [loginUsername, setLoginUsername] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = await login({
-      username
+      loginUsername
     });
     setToken(token.token);
+    setUsername(loginUsername);
   }
 
   return(
     <div className="center">
       <h1 className="horizontal-center">Log In</h1>
       <form className="horizontal-center" onSubmit={handleSubmit}>
-        <input className="login-username horizontal-center" type="text" placeholder="username" onChange={(e) => setUsername(e.target.value)}/>
+        <input className="login-username horizontal-center" type="text" placeholder="username" onChange={(e) => setLoginUsername(e.target.value)} />
         <p>(no password required - if username doesn't exist, a new user will be created)</p>
         <div className="horizontal-center">
           <Button variant="dark" type="submit">Login</Button>
