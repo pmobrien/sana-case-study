@@ -21,6 +21,11 @@ export default function Login({setToken, setUsername}) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!loginUsername) {
+      return;
+    }
+
     const token = await login({
       loginUsername
     });
@@ -34,9 +39,7 @@ export default function Login({setToken, setUsername}) {
       <form className="horizontal-center" onSubmit={handleSubmit}>
         <input autoFocus className="login-username horizontal-center" type="text" placeholder="username" onChange={(e) => setLoginUsername(e.target.value)} />
         <p>(no password required - if username doesn't exist, a new user will be created)</p>
-        <div className="horizontal-center">
-          <Button variant="dark" type="submit">Login</Button>
-        </div>
+        <Button className="login-button" variant="dark" type="submit" onSubmit="handleSubmit">Login</Button>
       </form>
     </div>
   )

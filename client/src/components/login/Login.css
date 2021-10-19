@@ -16,3 +16,7 @@
 .login-username {
   margin-bottom: 10px;
 }
+
+.login-button {
+  cursor: 'pointer'
+}
