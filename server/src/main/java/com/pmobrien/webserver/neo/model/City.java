@@ -50,6 +50,14 @@ public class City extends NeoEntity {
     this.name = name;
   }
 
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
   public List<AirQualityThreshold> getThresholds() {
     return thresholds;
   }
@@ -127,6 +135,7 @@ public class City extends NeoEntity {
       generator.writeStringField("uuid", city.getUuid().toString());
       generator.writeNumberField("idx", city.getIdx());
       generator.writeStringField("name", city.getName());
+      generator.writeStringField("description", city.getDescription());
     }
   }
 }
