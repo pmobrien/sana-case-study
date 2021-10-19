@@ -1,33 +1,30 @@
 import React, { useEffect, useState } from "react";
-import logo from './logo.svg';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import Dashboard from './components/dashboard/Dashboard';
+import Login from './components/login/Login';
+import UseToken from "./components/app/UseToken";
 
 import './App.css';
 
 function App() {
 
-  const [hello, setHello] = useState(null);
-  const [world, setWorld] = useState(null);
+  const { token, setToken } = UseToken();
 
-  useEffect(() => {
-    fetch('/api/hello-world')
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setHello(result.hello);
-          setWorld(result.world);
-        },
-        (error) => {
-          console.error(error);
-        }
-      )
-  }, [])
+  if (!token) {
+    return <Login setToken={setToken} />
+  }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>{hello} {world}</p>
-      </header>
+    <div className="wrapper">
+      <h1>Application</h1>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/dashboard">
+            <Dashboard />
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
