@@ -27,7 +27,7 @@ export default function Login({setToken, setUsername}) {
     }
 
     const token = await login({
-      loginUsername
+      username: loginUsername
     });
     setToken(token.token);
     setUsername(loginUsername);
